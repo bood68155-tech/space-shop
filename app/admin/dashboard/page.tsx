@@ -40,10 +40,10 @@ export default function AdminDashboard() {
   }
 
   const stats = [
-    { label: "Total Products", value: products.length, icon: "📦", color: "from-blue-500/20 to-blue-600/20" },
-    { label: "Sneakers", value: products.filter((p) => p.category === "Sneakers").length, icon: "👟", color: "from-orange-500/20 to-orange-600/20" },
-    { label: "Classic", value: products.filter((p) => p.category === "Classic").length, icon: "👞", color: "from-blue-500/20 to-cyan-600/20" },
-    { label: "Boots", value: products.filter((p) => p.category === "Boots").length, icon: "👢", color: "from-amber-500/20 to-yellow-600/20" },
+    { label: "Total Products", value: products.length, icon: "📦", color: "from-white/10 to-white/5" },
+    { label: "Sneakers", value: products.filter((p) => p.category === "Sneakers").length, icon: "👟", color: "from-white/10 to-white/5" },
+    { label: "Classic", value: products.filter((p) => p.category === "Classic").length, icon: "👞", color: "from-white/10 to-white/5" },
+    { label: "Boots", value: products.filter((p) => p.category === "Boots").length, icon: "👢", color: "from-white/10 to-white/5" },
   ];
 
   const openAddModal = () => {
@@ -190,7 +190,7 @@ export default function AdminDashboard() {
                         </button>
                         <button
                           onClick={() => handleDelete(product.id)}
-                          className="rounded-lg bg-red-500/20 px-3 py-1.5 text-sm text-red-400 transition-colors hover:bg-red-500/30"
+                          className="rounded-lg bg-white/5 px-3 py-1.5 text-sm text-gray-400 transition-colors hover:bg-white/10 hover:text-white"
                         >
                           Delete
                         </button>

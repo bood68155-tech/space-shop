@@ -69,7 +69,7 @@ export default function SignupPage() {
           className="space-y-6 rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md"
         >
           {error && (
-            <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+            <div className="rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm text-gray-300">
               {error}
             </div>
           )}
@@ -118,7 +118,7 @@ export default function SignupPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-xl bg-gradient-to-r from-space-accent to-indigo-600 py-3 font-semibold text-white transition-all hover:shadow-lg hover:shadow-space-accent/25 hover:brightness-110 disabled:opacity-50"
+            className="w-full rounded-xl bg-white/10 py-3 font-semibold text-white transition-all hover:bg-white/20 hover:shadow-lg hover:shadow-white/5 disabled:opacity-50"
           >
             {loading ? "Creating Account..." : "Begin Mission 🚀"}
           </button>

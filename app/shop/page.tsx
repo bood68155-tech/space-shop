@@ -66,7 +66,7 @@ export default function ShopPage() {
       <div className="mb-8 text-center">
         <FadeIn delay={0} duration={0.8} y={0} blur="12px">
           <h1 className="mb-3 text-6xl font-bold tracking-tight">
-            <span className="bg-gradient-to-r from-space-glow via-purple-400 to-pink-400 bg-clip-text text-transparent text-glow-strong">
+            <span className="bg-gradient-to-r from-white via-gray-300 to-white bg-clip-text text-transparent text-glow-strong">
               Explore the Galaxy
             </span>
           </h1>

@@ -9,10 +9,10 @@ interface PlanetFilterProps {
 }
 
 const categoryColors: Record<string, string> = {
-  All: "#818cf8",
-  Sneakers: "#f97316",
-  Classic: "#3b82f6",
-  Boots: "#f59e0b",
+  All: "#ffffff",
+  Sneakers: "#d4d4d4",
+  Classic: "#a3a3a3",
+  Boots: "#e5e5e5",
 };
 
 export default function PlanetFilter({ categories, selected, onSelect }: PlanetFilterProps) {

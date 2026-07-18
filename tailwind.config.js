@@ -13,8 +13,8 @@ const config: Config = {
           dark: "#0a0a1a",
           deep: "#0d0d2b",
           nebula: "#1a1a3e",
-          accent: "#6366f1",
-          glow: "#818cf8",
+          accent: "#a3a3a3",
+          glow: "#d4d4d4",
         },
       },
       backgroundImage: {
