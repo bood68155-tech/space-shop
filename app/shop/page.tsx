@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import ProductCard from "@/components/ProductCard";
 import PlanetFilter from "@/components/PlanetFilter";
 import FadeIn from "@/components/FadeIn";
+import HolographicCategory from "@/components/HolographicCategory";
 
 interface Product {
   id: string;
@@ -111,6 +112,13 @@ export default function ShopPage() {
         </div>
       ) : (
         <>
+          {(selectedCategory === "All" || selectedCategory === "Classic") && (
+            <HolographicCategory
+              onSelect={setSelectedCategory}
+              selected={selectedCategory}
+            />
+          )}
+
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredProducts.map((product, index) => (
               <ProductCard
