@@ -35,7 +35,7 @@ export default function HolographicCategory({ onSelect, selected }: HolographicC
             <Suspense fallback={null}>
               <ambientLight intensity={0.3} />
               <GlowProvider>
-                <HologramIcon type="classic" scale={1.4} />
+                <HologramIcon type="classic" scale={1.15} />
               </GlowProvider>
             </Suspense>
           </Canvas>

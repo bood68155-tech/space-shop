@@ -85,7 +85,7 @@ export default function PlanetFilter({ categories, selected, onSelect }: PlanetF
                   <ambientLight intensity={0.2} />
                   <Suspense fallback={null}>
                     <GlowProvider>
-                      <HologramIcon type={config.type!} scale={0.7} />
+                      <HologramIcon type={config.type!} scale={0.58} />
                     </GlowProvider>
                   </Suspense>
                 </Canvas>

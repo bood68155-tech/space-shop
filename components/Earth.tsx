@@ -362,7 +362,7 @@ export default function Earth() {
   });
 
   return (
-    <group ref={groupRef} position={[-5.0, 1.5, -9]} scale={0.5}>
+    <group ref={groupRef} position={[-5.0, 1.5, -9]} scale={0.42}>
       <EarthSurface />
       <EarthClouds />
       <EarthNightSide />
