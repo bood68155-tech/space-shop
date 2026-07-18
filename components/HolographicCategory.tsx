@@ -18,14 +18,14 @@ export default function HolographicCategory({ onSelect, selected }: HolographicC
   return (
     <FadeIn delay={0.35} duration={0.8} y={20}>
       <div
-        className={`glass-card mx-auto mb-10 flex max-w-3xl cursor-pointer items-center gap-8 overflow-hidden p-0 transition-all duration-500 ${
+        className={`glass-card mx-auto mb-12 flex max-w-3xl cursor-pointer items-center gap-10 p-0 transition-all duration-500 ${
           isActive
             ? "border-cyan-400/30 shadow-lg shadow-cyan-500/10"
             : "hover:border-white/20"
         }`}
         onClick={() => onSelect("Classic")}
       >
-        <div className="relative h-52 w-52 flex-shrink-0">
+        <div className="relative h-60 w-60 flex-shrink-0">
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10" />
           <Canvas
             camera={{ position: [0, 0.3, 2.5], fov: 40 }}

@@ -77,7 +77,7 @@ export default function ShopPage() {
       </div>
 
       <FadeIn delay={0.3} duration={0.7} y={20}>
-        <div className="mb-6">
+        <div className="mb-10">
           <PlanetFilter
             categories={categories}
             selected={selectedCategory}
@@ -87,7 +87,7 @@ export default function ShopPage() {
       </FadeIn>
 
       <FadeIn delay={0.45} duration={0.7} y={20}>
-        <div className="mb-8 flex justify-center">
+        <div className="mb-12 flex justify-center">
           <div className="relative w-full max-w-md">
             <input
               type="text"

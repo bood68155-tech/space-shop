@@ -45,7 +45,7 @@ const fallbackConfig = {
 
 export default function PlanetFilter({ categories, selected, onSelect }: PlanetFilterProps) {
   return (
-    <div className="glass-strong mx-auto flex w-fit flex-wrap items-center justify-center gap-8 rounded-full px-10 py-5">
+    <div className="glass-strong mx-auto flex w-fit flex-wrap items-center justify-center gap-14 rounded-full px-14 py-8">
       {categories.map((category) => {
         const config = categoryConfig[category] || fallbackConfig;
         const isActive = selected === category;
@@ -57,17 +57,17 @@ export default function PlanetFilter({ categories, selected, onSelect }: PlanetF
             onClick={() => onSelect(category)}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="group flex flex-col items-center gap-2"
+            className="group flex flex-col items-center gap-3 px-3 py-2"
           >
             <motion.div
               animate={isActive ? { scale: 1.15 } : { scale: 1 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className={`relative overflow-hidden rounded-full ${
+              className={`relative overflow-visible rounded-full ${
                 isActive ? "ring-2 ring-white/30" : ""
               }`}
               style={{
-                width: is3D ? 80 : 64,
-                height: is3D ? 80 : 64,
+                width: is3D ? 100 : 64,
+                height: is3D ? 100 : 64,
                 boxShadow: isActive
                   ? `0 0 28px ${config.color}55, 0 4px 16px rgba(0,0,0,0.3)`
                   : "0 4px 16px rgba(0,0,0,0.3)",
