@@ -1,11 +1,7 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
 import { motion } from "framer-motion";
 import FadeIn from "./FadeIn";
-import HologramIcon from "./HologramIcon";
-import { GlowProvider } from "./AtmosphericGlow";
 
 interface HolographicCategoryProps {
   onSelect: (category: string) => void;
@@ -18,59 +14,44 @@ export default function HolographicCategory({ onSelect, selected }: HolographicC
   return (
     <FadeIn delay={0.35} duration={0.8} y={20}>
       <div
-        className={`glass-card relative z-20 mx-auto mb-12 flex max-w-3xl cursor-pointer items-center gap-10 p-0 transition-all duration-500 ${
+        className={`glass-card mx-auto mb-10 flex max-w-2xl cursor-pointer items-center gap-8 transition-all duration-500 ${
           isActive
-            ? "border-cyan-400/30 shadow-lg shadow-cyan-500/10"
+            ? "border-blue-400/30 shadow-lg shadow-blue-500/10"
             : "hover:border-white/20"
         }`}
         onClick={() => onSelect("Classic")}
       >
-        <div className="relative h-60 w-60 flex-shrink-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10" />
-          <Canvas
-            camera={{ position: [0, 0.3, 2.5], fov: 40 }}
-            gl={{ alpha: true, antialias: true }}
-            style={{ background: "transparent" }}
-          >
-            <Suspense fallback={null}>
-              <ambientLight intensity={0.3} />
-              <GlowProvider>
-                <HologramIcon type="classic" scale={1.15} />
-              </GlowProvider>
-            </Suspense>
-          </Canvas>
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-space-deep/80 to-transparent" />
+        <div className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20">
+          <span className="text-4xl">&#x1F45F;</span>
         </div>
 
-        <div className="flex-1 py-4 pr-6">
-          <div className="mb-1 flex items-center gap-2">
-            <span className="text-xs font-medium uppercase tracking-widest text-cyan-400/80">
-              Featured Collection
-            </span>
-          </div>
-          <h2 className="mb-2 text-2xl font-bold">
-            <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-cyan-300 bg-clip-text text-transparent">
+        <div className="flex-1">
+          <span className="mb-1 block text-xs font-medium uppercase tracking-widest text-blue-400/80">
+            Featured Collection
+          </span>
+          <h2 className="mb-1 text-xl font-bold">
+            <span className="bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">
               Classic Leather
             </span>
           </h2>
-          <p className="mb-4 text-sm text-gray-400">
+          <p className="text-sm text-gray-400">
             Handcrafted premium leather shoes. Timeless elegance meets cosmic design.
-            Each pair is forged in the heart of a dying star.
           </p>
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="glass-btn px-5 py-2.5 text-sm"
-          >
-            Explore Collection
-          </motion.button>
         </div>
+
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          className="glass-btn mr-2 flex-shrink-0 px-4 py-2 text-sm"
+        >
+          Explore
+        </motion.button>
 
         {isActive && (
           <motion.div
             layoutId="holo-active-ring"
-            className="absolute inset-0 rounded-2xl border-2 border-cyan-400/20"
-            style={{ boxShadow: "0 0 40px rgba(0, 255, 204, 0.08), inset 0 0 40px rgba(0, 255, 204, 0.03)" }}
+            className="absolute inset-0 rounded-2xl border border-blue-400/15"
+            style={{ boxShadow: "0 0 30px rgba(59, 130, 246, 0.06)" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           />
         )}

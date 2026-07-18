@@ -63,7 +63,7 @@ export default function ShopPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-10">
-      <div className="mb-10 text-center">
+      <div className="mb-8 text-center">
         <FadeIn delay={0} duration={0.8} y={0} blur="12px">
           <h1 className="mb-3 text-6xl font-bold tracking-tight">
             <span className="bg-gradient-to-r from-space-glow via-purple-400 to-pink-400 bg-clip-text text-transparent text-glow-strong">
@@ -77,7 +77,7 @@ export default function ShopPage() {
       </div>
 
       <FadeIn delay={0.3} duration={0.7} y={20}>
-        <div className="mb-10">
+        <div className="mb-8 flex justify-center">
           <PlanetFilter
             categories={categories}
             selected={selectedCategory}
@@ -86,8 +86,8 @@ export default function ShopPage() {
         </div>
       </FadeIn>
 
-      <FadeIn delay={0.45} duration={0.7} y={20}>
-        <div className="mb-12 flex justify-center">
+      <FadeIn delay={0.4} duration={0.7} y={20}>
+        <div className="mb-10 flex justify-center">
           <div className="relative w-full max-w-md">
             <input
               type="text"
