@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { motion } from "framer-motion";
 import FadeIn from "./FadeIn";
 import HologramIcon from "./HologramIcon";
+import { GlowProvider } from "./AtmosphericGlow";
 
 interface HolographicCategoryProps {
   onSelect: (category: string) => void;
@@ -33,7 +34,9 @@ export default function HolographicCategory({ onSelect, selected }: HolographicC
           >
             <Suspense fallback={null}>
               <ambientLight intensity={0.3} />
-              <HologramIcon type="classic" scale={1.4} />
+              <GlowProvider>
+                <HologramIcon type="classic" scale={1.4} />
+              </GlowProvider>
             </Suspense>
           </Canvas>
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-space-deep/80 to-transparent" />

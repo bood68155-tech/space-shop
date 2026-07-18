@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { motion } from "framer-motion";
 import HologramIcon from "./HologramIcon";
+import { GlowProvider } from "./AtmosphericGlow";
 
 interface PlanetFilterProps {
   categories: string[];
@@ -83,7 +84,9 @@ export default function PlanetFilter({ categories, selected, onSelect }: PlanetF
                 >
                   <ambientLight intensity={0.2} />
                   <Suspense fallback={null}>
-                    <HologramIcon type={config.type!} scale={0.7} />
+                    <GlowProvider>
+                      <HologramIcon type={config.type!} scale={0.7} />
+                    </GlowProvider>
                   </Suspense>
                 </Canvas>
               ) : (

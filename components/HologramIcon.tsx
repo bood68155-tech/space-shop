@@ -3,6 +3,7 @@
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { HoloGlow } from "./AtmosphericGlow";
 
 type ShoeType = "sneakers" | "classic" | "boots";
 
@@ -350,6 +351,12 @@ export default function HologramIcon({ type, scale = 1 }: { type: ShoeType; scal
 
   return (
     <group ref={groupRef} scale={scale}>
+      <HoloGlow
+        color={HOLO_COLORS[type].glow}
+        secondaryColor={HOLO_COLORS[type].rim}
+        radius={0.85}
+        height={0.65}
+      />
       {type === "sneakers" && <SneakerModel holoMat={holoMat} wireMat={wireMat} />}
       {type === "classic" && <ClassicModel holoMat={holoMat} wireMat={wireMat} />}
       {type === "boots" && <BootModel holoMat={holoMat} wireMat={wireMat} />}
