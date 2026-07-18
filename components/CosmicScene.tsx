@@ -3,9 +3,10 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { XR, createXRStore } from "@react-three/xr";
-import { OrbitControls, Float, Environment } from "@react-three/drei";
+import { Float } from "@react-three/drei";
 import CosmicStars from "./CosmicStars";
 import Planet from "./Planet";
+import Saturn from "./Saturn";
 
 const store = createXRStore();
 
@@ -26,11 +27,15 @@ export default function CosmicScene() {
             <pointLight position={[0, 5, -10]} intensity={0.5} color="#ec4899" />
             <pointLight position={[5, -8, 3]} intensity={0.3} color="#6366f1" />
 
+            <directionalLight position={[5, 5, 5]} intensity={0.6} color="#fde68a" />
+
             <CosmicStars count={1500} />
 
             <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.5}>
               <Planet />
             </Float>
+
+            <Saturn />
 
             <fog attach="fog" args={["#0a0a1a", 30, 80]} />
           </Suspense>
