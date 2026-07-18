@@ -19,8 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="cosmic-bg" />
+        <div className="cosmic-bg-image" />
         <CosmicScene />
+        <div className="planet-earth" />
+        <div className="planet-saturn" />
+        <div className="planet-jupiter" />
         <div className="nebula-overlay" />
         <div className="relative z-10 min-h-screen">
           <Header />
