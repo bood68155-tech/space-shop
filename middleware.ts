@@ -1,33 +1,23 @@
-import { createServerClient } from "@supabase/ssr";
+import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
 
-  const supabase = createServerClient(
+  const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return req.cookies.getAll();
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) =>
-            req.cookies.set(name, value)
-          );
-          cookiesToSet.forEach(({ name, value, options }) =>
-            res.cookies.set(name, value, options)
-          );
-        },
-      },
-    }
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const authToken = req.cookies.get("sb-access-token")?.value
+    || req.cookies.get("sb-" + process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/https?:\/\//, "").replace(/\./g, "-") + "-auth-token")?.value;
+
+  let user = null;
+  if (authToken) {
+    const { data } = await supabase.auth.getUser(authToken);
+    user = data.user;
+  }
 
   if (req.nextUrl.pathname.startsWith("/admin") && !user) {
     return NextResponse.redirect(new URL("/auth/login", req.url));
