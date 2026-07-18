@@ -297,14 +297,14 @@ export default function Saturn() {
     if (groupRef.current) {
       driftRef.current.angle += 0.00025;
       const a = driftRef.current.angle;
-      groupRef.current.position.x = 5.5 + Math.sin(a * 0.5) * 0.35;
-      groupRef.current.position.y = 2.8 + Math.cos(a * 0.35) * 0.25;
+      groupRef.current.position.x = 6.5 + Math.sin(a * 0.5) * 0.25;
+      groupRef.current.position.y = 3.0 + Math.cos(a * 0.35) * 0.2;
       groupRef.current.rotation.z = Math.sin(a * 0.25) * 0.018;
     }
   });
 
   return (
-    <group ref={groupRef} position={[5.5, 2.8, -9]} scale={0.45}>
+    <group ref={groupRef} position={[6.5, 3.0, -14]} scale={0.45}>
       <SaturnBody />
       <SaturnRing />
       <SaturnAtmosphere />

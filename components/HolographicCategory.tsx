@@ -18,7 +18,7 @@ export default function HolographicCategory({ onSelect, selected }: HolographicC
   return (
     <FadeIn delay={0.35} duration={0.8} y={20}>
       <div
-        className={`glass-card mx-auto mb-12 flex max-w-3xl cursor-pointer items-center gap-10 p-0 transition-all duration-500 ${
+        className={`glass-card relative z-20 mx-auto mb-12 flex max-w-3xl cursor-pointer items-center gap-10 p-0 transition-all duration-500 ${
           isActive
             ? "border-cyan-400/30 shadow-lg shadow-cyan-500/10"
             : "hover:border-white/20"

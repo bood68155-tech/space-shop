@@ -45,7 +45,7 @@ const fallbackConfig = {
 
 export default function PlanetFilter({ categories, selected, onSelect }: PlanetFilterProps) {
   return (
-    <div className="glass-strong mx-auto flex w-fit flex-wrap items-center justify-center gap-14 rounded-full px-14 py-8">
+    <div className="glass-strong relative z-20 mx-auto flex w-fit flex-wrap items-center justify-center gap-14 rounded-full px-14 py-8">
       {categories.map((category) => {
         const config = categoryConfig[category] || fallbackConfig;
         const isActive = selected === category;

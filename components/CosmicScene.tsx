@@ -52,7 +52,7 @@ export default function CosmicScene() {
               </AtmosphericGlow>
             </GlowProvider>
 
-            <fog attach="fog" args={["#0a0a1a", 25, 70]} />
+            <fog attach="fog" args={["#0a0a1a", 18, 50]} />
           </Suspense>
         </XR>
       </Canvas>

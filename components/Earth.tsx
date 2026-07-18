@@ -355,14 +355,14 @@ export default function Earth() {
     if (groupRef.current) {
       driftRef.current.angle += 0.00025;
       const a = driftRef.current.angle;
-      groupRef.current.position.x = -5.0 + Math.sin(a * 0.6) * 0.4;
-      groupRef.current.position.y = 1.5 + Math.cos(a * 0.4) * 0.3;
+      groupRef.current.position.x = -6.0 + Math.sin(a * 0.6) * 0.3;
+      groupRef.current.position.y = 2.5 + Math.cos(a * 0.4) * 0.2;
       groupRef.current.rotation.z = Math.sin(a * 0.2) * 0.015;
     }
   });
 
   return (
-    <group ref={groupRef} position={[-5.0, 1.5, -9]} scale={0.42}>
+    <group ref={groupRef} position={[-6.0, 2.5, -14]} scale={0.42}>
       <EarthSurface />
       <EarthClouds />
       <EarthNightSide />
