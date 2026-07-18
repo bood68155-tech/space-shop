@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { supabase } from "@/lib/supabase";
 import type { User } from "@supabase/supabase-js";
 
@@ -31,11 +32,11 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-space-dark/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-space-dark/60 backdrop-blur-2xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Link href="/shop" className="flex items-center gap-2 text-xl font-bold">
           <span className="text-2xl">🚀</span>
-          <span className="bg-gradient-to-r from-space-accent to-space-glow bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-space-accent to-space-glow bg-clip-text text-transparent text-glow">
             Space Shop
           </span>
         </Link>
@@ -45,13 +46,20 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+              className={`relative rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 pathname === link.href
-                  ? "bg-space-accent/20 text-space-glow"
-                  : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "text-space-glow"
+                  : "text-gray-400 hover:text-white"
               }`}
             >
-              {link.label}
+              {pathname === link.href && (
+                <motion.div
+                  layoutId="nav-indicator"
+                  className="absolute inset-0 rounded-lg bg-space-accent/15 border border-space-accent/20"
+                  transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">{link.label}</span>
             </Link>
           ))}
 
@@ -65,13 +73,20 @@ export default function Header() {
           ) : (
             <Link
               href="/auth/login"
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+              className={`relative rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 pathname === "/auth/login"
-                  ? "bg-space-accent/20 text-space-glow"
-                  : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  ? "text-space-glow"
+                  : "text-gray-400 hover:text-white"
               }`}
             >
-              Login
+              {pathname === "/auth/login" && (
+                <motion.div
+                  layoutId="nav-indicator"
+                  className="absolute inset-0 rounded-lg bg-space-accent/15 border border-space-accent/20"
+                  transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">Login</span>
             </Link>
           )}
         </nav>
