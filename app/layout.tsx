@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import CosmicScene from "@/components/CosmicScene";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="cosmic-bg" />
-        <div className="stars" />
+        <CosmicScene />
         <div className="nebula-overlay" />
         <div className="relative z-10 min-h-screen">
           <Header />
