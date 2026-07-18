@@ -1,6 +1,9 @@
 "use client";
 
+import { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
 import { motion } from "framer-motion";
+import HologramIcon from "./HologramIcon";
 
 interface PlanetFilterProps {
   categories: string[];
@@ -8,51 +11,44 @@ interface PlanetFilterProps {
   onSelect: (category: string) => void;
 }
 
-const planetStyles: Record<string, { bg: string; ring: string; glow: string; emoji: string; color: string }> = {
+type ShoeType = "sneakers" | "classic" | "boots";
+
+const categoryConfig: Record<string, { glow: string; color: string; type?: ShoeType; emoji?: string }> = {
   All: {
-    bg: "bg-gradient-to-br from-indigo-500 to-purple-600",
-    ring: "ring-indigo-400/50",
     glow: "shadow-indigo-500/40",
-    emoji: "🌌",
     color: "#6366f1",
+    emoji: "🌌",
   },
   Sneakers: {
-    bg: "bg-gradient-to-br from-orange-400 to-red-500",
-    ring: "ring-orange-400/50",
     glow: "shadow-orange-500/40",
-    emoji: "👟",
-    color: "#f97316",
+    color: "#00ff88",
+    type: "sneakers",
   },
   Classic: {
-    bg: "bg-gradient-to-br from-blue-400 to-cyan-500",
-    ring: "ring-blue-400/50",
     glow: "shadow-blue-500/40",
-    emoji: "👞",
-    color: "#3b82f6",
+    color: "#00ffcc",
+    type: "classic",
   },
   Boots: {
-    bg: "bg-gradient-to-br from-amber-500 to-yellow-600",
-    ring: "ring-amber-400/50",
     glow: "shadow-amber-500/40",
-    emoji: "👢",
-    color: "#f59e0b",
+    color: "#ffaa00",
+    type: "boots",
   },
 };
 
-const fallbackStyle = {
-  bg: "bg-gradient-to-br from-gray-400 to-gray-600",
-  ring: "ring-gray-400/50",
+const fallbackConfig = {
   glow: "shadow-gray-500/40",
-  emoji: "🪐",
   color: "#9ca3af",
+  emoji: "🪐",
 };
 
 export default function PlanetFilter({ categories, selected, onSelect }: PlanetFilterProps) {
   return (
     <div className="glass-strong mx-auto flex w-fit flex-wrap items-center justify-center gap-8 rounded-full px-10 py-5">
       {categories.map((category) => {
-        const style = planetStyles[category] || { ...fallbackStyle, emoji: "🪐", color: "#9ca3af" };
+        const config = categoryConfig[category] || fallbackConfig;
         const isActive = selected === category;
+        const is3D = !!config.type;
 
         return (
           <motion.button
@@ -65,23 +61,55 @@ export default function PlanetFilter({ categories, selected, onSelect }: PlanetF
             <motion.div
               animate={isActive ? { scale: 1.15 } : { scale: 1 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className={`planet-btn ${style.bg} ${isActive ? "planet-btn-active ring-2 " + style.ring : "planet-btn-inactive"}`}
-              style={isActive ? {
-                boxShadow: `0 0 24px ${style.color}66, 0 4px 16px rgba(0,0,0,0.3), inset 0 0 12px ${style.color}33`,
-              } : {}}
+              className={`relative overflow-hidden rounded-full ${
+                isActive ? "ring-2 ring-white/30" : ""
+              }`}
+              style={{
+                width: is3D ? 80 : 64,
+                height: is3D ? 80 : 64,
+                boxShadow: isActive
+                  ? `0 0 28px ${config.color}55, 0 4px 16px rgba(0,0,0,0.3)`
+                  : "0 4px 16px rgba(0,0,0,0.3)",
+                background: is3D
+                  ? "radial-gradient(circle, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 100%)"
+                  : undefined,
+              }}
             >
-              <span className="text-2xl">{style.emoji}</span>
+              {is3D ? (
+                <Canvas
+                  camera={{ position: [0, 0.2, 2.8], fov: 35 }}
+                  gl={{ alpha: true, antialias: true }}
+                  style={{ background: "transparent" }}
+                >
+                  <ambientLight intensity={0.2} />
+                  <Suspense fallback={null}>
+                    <HologramIcon type={config.type!} scale={0.7} />
+                  </Suspense>
+                </Canvas>
+              ) : (
+                <div
+                  className={`flex h-full w-full items-center justify-center ${
+                    category === "All"
+                      ? "bg-gradient-to-br from-indigo-500 to-purple-600"
+                      : "bg-gradient-to-br from-gray-400 to-gray-600"
+                  }`}
+                >
+                  <span className="text-2xl">{config.emoji}</span>
+                </div>
+              )}
+
               {isActive && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="absolute -inset-1.5 rounded-full border border-white/20"
                   style={{
-                    boxShadow: `0 0 16px ${style.color}33`,
+                    boxShadow: `0 0 16px ${config.color}33`,
                   }}
                 />
               )}
             </motion.div>
+
             <span
               className={`text-xs font-medium transition-colors ${
                 isActive ? "text-white" : "text-gray-500 group-hover:text-gray-300"

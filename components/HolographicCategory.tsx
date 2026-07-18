@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { motion } from "framer-motion";
 import FadeIn from "./FadeIn";
-import HologramShoe from "./HologramShoe";
+import HologramIcon from "./HologramIcon";
 
 interface HolographicCategoryProps {
   onSelect: (category: string) => void;
@@ -33,7 +33,7 @@ export default function HolographicCategory({ onSelect, selected }: HolographicC
           >
             <Suspense fallback={null}>
               <ambientLight intensity={0.3} />
-              <HologramShoe scale={1.4} />
+              <HologramIcon type="classic" scale={1.4} />
             </Suspense>
           </Canvas>
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-space-deep/80 to-transparent" />
